@@ -78,6 +78,7 @@ add_executable(MagicPodsCore
     src/device/GalaxyBudsDevice.cpp
     src/device/DeviceBattery.cpp    
     src/device/Device.cpp
+    src/device/PixelBudsDevice.cpp
 
     src/dbus/DBusDeviceInfo.cpp
     src/dbus/DBusService.cpp
@@ -90,4 +91,19 @@ target_include_directories(MagicPodsCore PRIVATE
     dependencies/json
     ${PROJECT_BINARY_DIR}/src
 )
-target_link_libraries(MagicPodsCore PRIVATE sdbus-c++ uWebSockets bluetooth)
+
+if(WIN32)
+    # Windows-specific configuration
+    set(CMAKE_SYSTEM_NAME WindowsStore)
+    set(CMAKE_SYSTEM_VERSION "10.0")
+
+    # Find C++/WinRT package
+    # You will need to install vcpkg and run `vcpkg install cppwinrt`
+    find_package(cppwinrt CONFIG REQUIRED)
+
+    target_link_libraries(MagicPodsCore PRIVATE Microsoft::CppWinRT)
+else()
+    # Linux-specific configuration
+    target_link_libraries(MagicPodsCore PRIVATE sdbus-c++ uWebSockets bluetooth)
+endif()
+

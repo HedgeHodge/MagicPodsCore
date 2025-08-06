@@ -11,7 +11,11 @@
 #include "Logger.h"
 #include "dbus/DBusDeviceInfo.h"
 
+#ifndef _WIN32
+#ifndef _WIN32
 #include <sdbus-c++/sdbus-c++.h>
+#endif
+#endif
 #include <iostream>
 #include <vector>
 #include <json.hpp>
@@ -19,6 +23,8 @@
 namespace MagicPodsCore {
 
     class Device {
+public:
+    virtual ~Device() = default;
     private:
         std::shared_ptr<DBusDeviceInfo> _deviceInfo{};
         

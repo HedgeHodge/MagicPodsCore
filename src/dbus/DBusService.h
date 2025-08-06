@@ -11,7 +11,11 @@
 #include <map>
 #include <set>
 #include <regex>
+#ifndef _WIN32
+#ifndef _WIN32
 #include <sdbus-c++/sdbus-c++.h>
+#endif
+#endif
 #include <iostream>
 
 namespace MagicPodsCore {

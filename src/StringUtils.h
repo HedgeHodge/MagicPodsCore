@@ -8,6 +8,7 @@
 #include <algorithm>
 #include <cstdio>
 #include <iomanip>
+#include <sstream>
 #include <vector>
 #include <cstdint>
 

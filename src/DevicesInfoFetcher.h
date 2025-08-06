@@ -15,7 +15,11 @@
 #include <set>
 #include <map>
 #include <array>
+#ifndef _WIN32
+#ifndef _WIN32
 #include <sdbus-c++/sdbus-c++.h>
+#endif
+#endif
 #include <json.hpp>
 
 namespace MagicPodsCore {

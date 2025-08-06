@@ -121,6 +121,13 @@ public:
     }
 
     template <typename... Args>
+    static void Error(const wchar_t* format, const Args&... args) {
+        std::wstring wformat(format);
+        std::string format_str(wformat.begin(), wformat.end());
+        GetGlobalInstance().Log(LogLevel::Error, format_str.c_str(), args...);
+    }
+
+    template <typename... Args>
     static void Critical(const char* format, const Args&... args) {
         GetGlobalInstance().Log(LogLevel::Critical, format, args...);
     }

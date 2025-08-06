@@ -11,6 +11,7 @@
 #include "Logger.h"
 #include "device/GalaxyBudsDevice.h"
 #include "device/AapDevice.h"
+#include "device/PixelBudsDevice.h"
 
 #include <regex>
 #include <iostream>
@@ -151,6 +152,14 @@ namespace MagicPodsCore {
             }
 
             auto newDevice = GalaxyBudsDevice::Create(deviceInfo, static_cast<unsigned short>(keyPair.first));
+            newDevice->GetConnectedPropertyChangedEvent().Subscribe([this](size_t listenerId, bool newValue) {
+                TrySelectNewActiveDevice();
+            });
+            return newDevice;
+        }
+        else if (deviceInfo->GetName().find("Pixel Buds Pro") != std::string::npos)
+        {
+            auto newDevice = std::make_shared<PixelBudsDevice>(deviceInfo->GetAddress(), deviceInfo->GetName());
             newDevice->GetConnectedPropertyChangedEvent().Subscribe([this](size_t listenerId, bool newValue) {
                 TrySelectNewActiveDevice();
             });

@@ -10,11 +10,19 @@
 #include "BlockingQueue.h"
 
 #include <stdio.h>
+#ifndef _WIN32
 #include <unistd.h>
+#endif
 #include <stdlib.h>
+#ifndef _WIN32
 #include <sys/socket.h>
+#endif
+#ifndef _WIN32
 #include <bluetooth/bluetooth.h>
+#endif
+#ifndef _WIN32
 #include <bluetooth/l2cap.h>
+#endif
 #include <bluetooth/rfcomm.h>
 #include <bluetooth/sdp.h>
 #include <bluetooth/sdp_lib.h>

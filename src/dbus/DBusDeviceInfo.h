@@ -10,7 +10,11 @@
 #include <string>
 #include <optional>
 #include <vector>
+#ifndef _WIN32
+#ifndef _WIN32
 #include <sdbus-c++/sdbus-c++.h>
+#endif
+#endif
 
 namespace MagicPodsCore {
 

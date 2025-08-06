@@ -1,3 +1,5 @@
-add_subdirectory(sdbus-cpp)
+if(NOT WIN32)
+    add_subdirectory(sdbus-cpp)
+endif()
 add_subdirectory(uSockets)
 add_subdirectory(uWebSockets)
